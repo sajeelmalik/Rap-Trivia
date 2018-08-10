@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
     <title>Rap Trivia Game</title>
   </head>
@@ -17,19 +18,19 @@
         <source src="assets/images/hotlinebling.mp4" type="video/mp4">
     </video>
     <h1>Rap Trivia</h1>
-      <div class = "container">
       <h3></h3>
       <div class = "container">
-        <button class = "btn btn-dark" id = "start">Are You A Rap God</button>
-        <div id = "clock" style = "display: none">
-           <i class="far fa-clock"></i> <span id = "timer"></span> 
+        <button class = "btn btn-outline-dark btn-lg btn-block" id = "start">Are You A Rap God</button>
+        <div id = "main">
+            <div id = "clock" style = "display: none">
+                <i class="far fa-clock"></i> <span id = "timer"></span> 
+            </div>
+            <h3 id = "questions"></h3>
+            <div class = "answers alert alert-dark"></div>
+            <div id = "score"></div>
         </div>
-        <h3 id = "questions"></h3>
-        <div class = "answers alert alert-dark"></div>
-        <div id = "score"></div>
     </div>
       
-    </div>
 
     <!-- JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

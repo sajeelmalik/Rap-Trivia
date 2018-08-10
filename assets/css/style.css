@@ -11,11 +11,29 @@ video {
 
 h1{
     text-align: center;
+    display: none;
 }
 
-button{
-    margin: auto;
+#start{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -760px;
+    padding: 50px;
+    opacity: 0.8;
+    font-family: 'Lobster', cursive;
+    font-size: 64px;
+    transition: .4s ease;
+    justify-content: center;
+    align-content: center;
+    box-shadow: 0px 60px 60px rgba(0,0,0,.2);
+}
 
+#main{
+    padding-top: 180px;
+    justify-content: center;
+    align-content: center;
 }
 
 #clock{
