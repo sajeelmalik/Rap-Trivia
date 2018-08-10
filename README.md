@@ -19,7 +19,7 @@ Follow the deployed project link below to play the game!
 
 ### Image Preview of Rap Trivia
 <!-- take a picture of the image and add it into the readme  -->
-![Rap Trivia Preview](/assets/images/preview.jpg "Rap Trivia")
+![Rap Trivia Preview](https://raw.githubusercontent.com/sajeelmalik/Rap-Trivia/master/assets/images/preview.JPG "Rap Trivia")
 
 ## Prerequisites
 
