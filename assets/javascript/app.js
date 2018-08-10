@@ -2,11 +2,25 @@
 var questions = [{"Question": "What is Drake's real name?",
 "Answer": ["Grayson", "Aubrey", "Jeffrey", "Susu"],
 "Correct": "Aubrey"},
-{"Question": "What is the square root of 225?", "Answer": ["25", "15", "10", "20"],
-"Correct": "15"},
-{"Question": "What is the square root of 225?",
-"Answer": ["25", "15", "10", "20"],
-"Correct": "15"},
+
+{"Question": "Which Kendrick Lamar song came first?", "Answer": ["i", "Humble", "Ignorance is Bliss", "Poetic Justice"],
+"Correct": "Ignorance is Bliss"},
+
+{"Question": "J Cole knocked on whose door to promote his mixtape?",
+"Answer": ["Jay Z", "Eminem", "Nas", "Tupac"],
+"Correct": "Jay Z"},
+
+{"Question": "Continue the lyric: 'I am a sinner...'",
+"Answer": ["baby cook me a chicken dinner", "I am a singer, I'm gonna bring her back again", "and I'm probably gonna sin again", "because I've been caught up in inside trading and it's immoral and illegal, damn"],
+"Correct": "and I'm probably gonna sin again"},
+
+{"Question": "J Cole knocked on whose door to promote his mixtape?",
+"Answer": ["Jay Z", "Eminem", "Nas", "Tupac"],
+"Correct": "Jay Z"},
+
+{"Question": "Continue the lyric: 'His palms are...'",
+"Answer": ["ready, easily calm and steady", "drawn, on the song he drops a bomb", "gone, bloodied since the start of dawn", "sweaty, knees weak, arms are heavy"],
+"Correct": "sweaty, knees weak, arms are heavy"},
 ];
 
 //questions[i].Answer.indexOf(questions[i].Correct);
@@ -16,6 +30,8 @@ var correct = 0;
 var incorrect = 0;
 var timer;
 var seconds = 10;
+var click = 0; //raw click iterator
+var answer; //empty answer variable to be edited
 
 
 $(document).ready(function(){
@@ -26,45 +42,53 @@ $(document).ready(function(){
         timer = setInterval(function(){
             $("#timer").text("Time left: " + seconds);
             seconds--;
-            if(seconds === -1){
-                $("#questions").hide()
-                checkAnswer();
-                displayScore();
+
+            if(seconds === -1 && click < questions.length){
                 clearInterval(timer);
+                click++
+                incorrect++;
+                nextQuestion();
+                // checkAnswer();
+                timeLimit();
+            }
+            else if(click === 10){
+                displayScore();
             }
         }, 1000); 
     };
 
-    function gameStart(){
-        for(var i = 0; i < questions.length; i++){
-            console.log(questions[i].Answer.indexOf(questions[i].Correct));
-            var q = $("<h2>").text(questions[i].Question);
-            $("#questions").append(q);
+    function nextQuestion(){
+        seconds = 10;
+        $("#questions").empty();
+        $(".answers").empty();
+        // console.log(questions[click].Answer.indexOf(questions[click].Correct));
+        var q = $("<h2>").text(questions[click].Question);
+        $("#questions").append(q);
 
-            $.each(questions[i].Answer, function(index, value){
-                var answers = $("<p>").text(questions[i].Answer);
-                $("#questions").append("<input type = 'radio' name = " + i + " id = " + index + "/><label for = "+ index + ">" + value + " </label>");
+        for(var i = 0; i < questions[click].Answer.length; i++){
+            answer = $("<p>").text(questions[click].Answer[i]);
+            answer.attr("id", questions[click].Answer[i]);
+            console.log(answer.attr("id"));
+            $(".answers").append(answer);
+            }
         
-
-            });
-        }
+        // }
     };
 
-    function checkAnswer(){
+    // function checkAnswer(){
         
-        for(var i = 0; i < questions.length; i++){
-            var correctRadio = questions[i].Answer.indexOf(questions[i].Correct);
-            console.log(correctRadio);
-            console.log($("input:radio[id =" + correctRadio + "]").is(':checked'));
-            if ($("input[id="+ correctRadio + "]").is(':checked')){
-                correct++;
-            }
-            else{
-                incorrect++;
-            }
-        }
-        console.log(correct + " " + incorrect)
-    }
+    //     var correctIndex = questions[click].Answer.indexOf(questions[click].Correct);
+    //     console.log(correctIndex);
+    //     console.log(answer.id)
+    //     if (answer.id === questions[click].Correct){
+    //         correct++;
+    //     }
+    //     else{
+    //         incorrect++;
+    //     }
+        
+    //     console.log(correct + " " + incorrect)
+    // }
 
     function displayScore(){
         var percentage = Math.round(correct/incorrect);
@@ -93,10 +117,30 @@ $(document).ready(function(){
     }
 
     $("#start").on("click", function(){
-        console.log("clicked");
         $("#start").remove();
         timeLimit();
-        gameStart();
+        nextQuestion();
+    });
+
+    $(".answers").on("click", "p", function(){
+        console.log(click);
+        console.log($(this).attr('id'));
+        console.log(questions[click].Correct);
+        if ($(this).attr('id') === questions[click].Correct){
+            correct++;
+            console.log("Correct!");
+        }
+        else{
+            incorrect++;
+            console.log("incorrect!");
+        }
+        click++;
+        if(click < questions.length){
+            nextQuestion();
+        }
+        else if(click === 10){
+            displayScore();
+        }
 
     });
 
