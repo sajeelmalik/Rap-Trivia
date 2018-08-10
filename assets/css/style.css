@@ -1,6 +1,18 @@
+video {
+    position: absolute;
+    opacity: 0.9;
+    z-index: -1;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    
+}
+
 h1{
     text-align: center;
 }
+
 button{
     margin: auto;
 
