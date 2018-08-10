@@ -35,6 +35,7 @@ var answer; //empty answer variable to be edited
 
 
 $(document).ready(function(){
+    $(".answers").hide();
 
     console.log(questions.length)
 
@@ -61,6 +62,7 @@ $(document).ready(function(){
         seconds = 15;
         $("#questions").empty();
         $(".answers").empty();
+        
         // console.log(questions[click].Answer.indexOf(questions[click].Correct));
         var q = $("<h2>").text(questions[click].Question);
         $("#questions").append(q);
@@ -92,16 +94,21 @@ $(document).ready(function(){
 
     function displayScore(){
         clearInterval(timer);
-        timer.hide();
-        questions.hide();
+        $("#timer").hide();
+        $("#questions").hide();
+        $(".answers").hide();
 
-        var percentage = Math.round(correct/incorrect);
+        var percentage = Math.round(correct/questions.length);
         console.log("Percentage: " + percentage)
         function addScore(){
-            $("#score").append("Your total score is: " + percentage);
-            $("#score").append(correct + " Correct Answers.");
-            $("#score").append(incorrect + " Incorrect Answers.");
+            var totalScore = $("<p>").text("Your total score is: " + percentage);
+            $("#score").append(totalScore);
+            var totalCorrect = $("<p>").text(correct + " Correct Answers.");
+            $("#score").append(totalCorrect);
+            var totalIncorrect = $("<p>").text(incorrect + " Incorrect Answers.");
+            $("#score").append(totalIncorrect);
         }
+
         if(percentage > 80){
             var message = $("<h3>").text("You... might be a genius!")
             $("#score").append(message);
@@ -124,6 +131,7 @@ $(document).ready(function(){
         var audio = new Audio("assets/images/brasstracks.mp3");
         audio.play();
         $("#start").remove();
+        $(".answers").show();
         timeLimit();
         nextQuestion();
     });
@@ -141,6 +149,7 @@ $(document).ready(function(){
             console.log("incorrect!");
         }
         click++;
+
         if(click < questions.length){
             nextQuestion();
         }
