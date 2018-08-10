@@ -1,9 +1,13 @@
 h1{
     text-align: center;
 }
-.btn{
+button{
     margin: auto;
+
 }
 .answers{
-    background-color: cyan;
+    /* text-align: center; */
+    font-size: 24px;
+    margin: 10px;
+    opacity: 0.9;
 }

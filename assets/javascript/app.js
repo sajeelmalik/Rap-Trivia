@@ -29,7 +29,7 @@ var questions = [{"Question": "What is Drake's real name?",
 var correct = 0;
 var incorrect = 0;
 var timer;
-var seconds = 10;
+var seconds = 15;
 var click = 0; //raw click iterator
 var answer; //empty answer variable to be edited
 
@@ -51,14 +51,14 @@ $(document).ready(function(){
                 // checkAnswer();
                 timeLimit();
             }
-            else if(click === 10){
+            else if(click === questions.length){
                 displayScore();
             }
         }, 1000); 
     };
 
     function nextQuestion(){
-        seconds = 10;
+        seconds = 15;
         $("#questions").empty();
         $(".answers").empty();
         // console.log(questions[click].Answer.indexOf(questions[click].Correct));
@@ -91,32 +91,38 @@ $(document).ready(function(){
     // }
 
     function displayScore(){
+        clearInterval(timer);
+        timer.hide();
+        questions.hide();
+
         var percentage = Math.round(correct/incorrect);
         console.log("Percentage: " + percentage)
         function addScore(){
-            $("score").append("Your total score is: " + percentage);
-            $("score").append(correct + " Correct Answers.");
-            $("score").append(incorrect + " Incorrect Answers.");
+            $("#score").append("Your total score is: " + percentage);
+            $("#score").append(correct + " Correct Answers.");
+            $("#score").append(incorrect + " Incorrect Answers.");
         }
         if(percentage > 80){
             var message = $("<h3>").text("You... might be a genius!")
-            $("score").append(message);
+            $("#score").append(message);
             addScore();
         }
         else if(percentage > 50) {
             var message = $("<h3>").text("Impressive, but there's still room for improvement.");
-            $("score").append(message); 
+            $("#score").append(message); 
             addScore();
         }
         else{
             var message = $("<h3>").text("YOU FAILED! Definitely room to improve.");
-            $("score").append(message); 
+            $("#score").append(message); 
             addScore(); 
         }
 
     }
 
     $("#start").on("click", function(){
+        var audio = new Audio("assets/images/brasstracks.mp3");
+        audio.play();
         $("#start").remove();
         timeLimit();
         nextQuestion();
@@ -138,7 +144,7 @@ $(document).ready(function(){
         if(click < questions.length){
             nextQuestion();
         }
-        else if(click === 10){
+        else if(click === questions.length){
             displayScore();
         }
 
