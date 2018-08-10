@@ -106,11 +106,13 @@ $(document).ready(function(){
         $("#timer").hide();
         $("#questions").hide();
         $(".answers").hide();
+        $("#clock").hide();
+        $("#score").show();
 
-        var percentage = Math.round((correct/questions.length) * 100)+ "%";
+        var percentage = Math.round((correct/questions.length) * 100);
         console.log("Percentage: " + percentage)
         function addScore(){
-            var totalScore = $("<p>").text("Your total score is: " + percentage);
+            var totalScore = $("<p>").text("Your total score is: " + percentage + "%");
             $("#score").append(totalScore);
             var totalCorrect = $("<p>").text(correct + " Correct Answers.");
             $("#score").append(totalCorrect);
