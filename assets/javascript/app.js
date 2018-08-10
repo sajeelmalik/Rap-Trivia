@@ -95,6 +95,7 @@ $(document).ready(function(){
         for(var i = 0; i < questions[click].Answer.length; i++){
             answer = $("<p>").text(questions[click].Answer[i]);
             answer.attr("id", questions[click].Answer[i]);
+            answer.attr("class", "options");
             // console.log(answer.attr("id"));
             $(".answers").append(answer);
             }
