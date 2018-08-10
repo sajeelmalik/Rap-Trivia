@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <title>Rap Trivia Game</title>
@@ -16,8 +17,10 @@
       <div class = "container">
       <h3></h3>
       <div class = "container">
-        <button class = "btn btn-success" id = "start">Start</button>
-        <div id = "timer"></div>
+        <button class = "btn btn-dark" id = "start">Start</button>
+        <div id = "clock" style = "display: none">
+           <i class="far fa-clock"></i> <span id = "timer"></span> 
+        </div>
         <h3 id = "questions"></h3>
         <div class = "answers alert alert-dark"></div>
         <div id = "score"></div>

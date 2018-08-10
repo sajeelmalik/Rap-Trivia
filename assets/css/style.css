@@ -5,6 +5,18 @@ button{
     margin: auto;
 
 }
+
+#clock{
+    background-color: lightgray;
+    color: black;
+    padding: 10px;
+    width: 200px;
+    font-size: 18px;
+    text-align: center;
+    margin: auto;
+    opacity: 0.9;
+    border-radius: 10px;
+}
 .answers{
     /* text-align: center; */
     font-size: 24px;
