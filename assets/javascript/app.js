@@ -3,53 +3,59 @@ var questions = [
     { 
         "Question": "What is Drake's real name?",
         "Answer": ["Grayson", "Aubrey", "Jeffrey", "Susu"],
-        "Correct": "Aubrey"
+        "Correct": "Aubrey",
+        "Image": "https://media.giphy.com/media/CnTm1G4rM7k9q/giphy.gif"
     },
 
     {
         "Question": "Which Kendrick Lamar song came first?", "Answer": ["i", "Humble", "Ignorance is Bliss", "Poetic Justice"],
-        "Correct": "Ignorance is Bliss"
+        "Correct": "Ignorance is Bliss",
+        "Image": "https://media.giphy.com/media/26ufdKlT4SEYqyLG8/giphy.gif"
     },
 
     {
         "Question": "J Cole knocked on whose door to promote his mixtape?",
         "Answer": ["Jay Z", "Eminem", "Nas", "Tupac"],
-        "Correct": "Jay Z"
+        "Correct": "Jay Z",
+        "Image": "https://media.giphy.com/media/26ufdKlT4SEYqyLG8/giphy.gif"
     },
 
     {
         "Question": "Continue the lyric: 'I am a sinner...'",
         "Answer": ["baby cook me a chicken dinner", "I am a singer, I'm gonna bring her back again", "and I'm probably gonna sin again", "because I've been caught up in inside trading and it's immoral and illegal, damn"],
-        "Correct": "and I'm probably gonna sin again"
+        "Correct": "and I'm probably gonna sin again",
+        "Image": "https://media.giphy.com/media/26ufdKlT4SEYqyLG8/giphy.gif"
     },
 
     {
         "Question": "What is Nas' revolutionary debut album that changed the game?",
         "Answer": ["Illmatic", "Moment of Clarity", "It Was Written", "All Eyez On Me"],
-        "Correct": "Illmatic"
+        "Correct": "Illmatic",
+        "Image": "https://media.giphy.com/media/26ufdKlT4SEYqyLG8/giphy.gif"
     },
 
     {
         "Question": "Continue the lyric: 'His palms are...'",
         "Answer": ["ready, easily calm and steady", "drawn, on the song he drops a bomb", "gone, bloodied since the start of dawn", "sweaty, knees weak, arms are heavy"],
-        "Correct": "sweaty, knees weak, arms are heavy"
+        "Correct": "sweaty, knees weak, arms are heavy",
+        "Image": "https://media.giphy.com/media/26ufdKlT4SEYqyLG8/giphy.gif"
     },
 
     {
         "Question": "Who is not an original member of the Wu Tang Clan?",
-        "Answer": ["Ghostface Killah", "SZA", "Method Man", "Raekwon"],
-        "Correct": "SZA"
+        "Answer": ["Ghostface Killah", "FZA", "Method Man", "Raekwon"],
+        "Correct": "FZA",
+        "Image": "https://media.giphy.com/media/26ufdKlT4SEYqyLG8/giphy.gif"
     },
 
     {  
         "Question": "Continue the lyric: 'La, la, laa la, wait till I get my...'",
         "Answer": ["boys lined up", "girl back again", "fans and the bands", "money right"],
-        "Correct": "money right"
+        "Correct": "money right",
+        "Image": "https://media.giphy.com/media/26ufdKlT4SEYqyLG8/giphy.gif"
     },
 
 ];
-
-//questions[i].Answer.indexOf(questions[i].Correct);
 
 //global variables
 var correct = 0;
@@ -68,15 +74,19 @@ $(document).ready(function(){
     // set time limit for each question
     function timeLimit(){
         timer = setInterval(function(){
+            $("#clock").css("animation", "none");
             $("#timer").text("Time left: " + seconds);
             seconds--;
 
+            if(seconds < 5){
+                $("#clock").css("animation", "pulse 5s infinite");
+            }
+
             if(seconds === -1 && click < questions.length){
-                clearInterval(timer);
+                seconds = 15;
                 click++
                 incorrect++;
                 nextQuestion();
-                timeLimit();
             }
             else if(click === questions.length){
                 displayScore();
@@ -154,22 +164,43 @@ $(document).ready(function(){
         console.log($(this).attr('id'));
         console.log(questions[click].Correct);
         if ($(this).attr('id') === questions[click].Correct){
+            $(this).css("background-color", "rgba(120, 247, 109, 0.65)");
+            $(this).css("box-shadow", "0px 0px 10px rgba(6, 250, 26, 0.87)");
+            $(this).css("font-size", "28px");
+            $(this).css("font-family", "'Lobster', cursive");
+            $(this).css("padding", "5px");
+            $(this).css("transition", "0.5s ease");
+            
             correct++;
             console.log("Correct!");
         }
         else{
+            $(this).css("background-color", "rgba(226, 67, 67, 0.61)");
+            $(this).css("box-shadow", "0px 0px 10px rgba(250, 6, 6, 0.87)");
+            $(this).css("font-size", "28px");
+            $(this).css("font-family", "'Lobster', cursive");
+            $(this).css("border-radius", "10px");
+            $(this).css("padding", "5px");
+            $(this).css("transition", "0.5s ease");
             incorrect++;
             console.log("incorrect!");
         }
         click++;
+        seconds = 15;
+        $("#clock").css("animation", "none");
+        clearTimeout(timer);
 
-        if(click < questions.length){
-            nextQuestion();
-        }
-        else if(click === questions.length){
-            displayScore();
-        }
-
+    
+        setTimeout(function(){
+            timeLimit();
+            if(click < questions.length){
+                nextQuestion();
+            }
+            else if(click === questions.length){
+                displayScore();
+            }
+        }, 3000);
+    
     });
 
 });

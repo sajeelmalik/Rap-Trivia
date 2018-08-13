@@ -16,10 +16,7 @@ h1{
 
 #start{
     position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -760px;
+    top: 38%;
     padding: 50px;
     opacity: 0.8;
     font-family: 'Lobster', cursive;
@@ -31,7 +28,7 @@ h1{
 }
 
 #main{
-    padding-top: 180px;
+    padding-top: 160px;
     justify-content: center;
     align-content: center;
 }
@@ -44,9 +41,22 @@ h1{
     font-size: 18px;
     text-align: center;
     margin: auto;
+    margin-bottom: 20px;
     opacity: 0.9;
     border-radius: 10px;
 }
+
+@keyframes pulse {
+    0% {
+      color: black
+    }
+    100% {
+      color: #FF4136;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
 .answers{
     /* text-align: center; */
     font-size: 24px;
@@ -57,11 +67,22 @@ h1{
 .options:hover{
     font-size: 28px;
     font-family: 'Lobster', cursive;
-    background-color: rgba(242, 104, 247, 0.5);
+    background-color: rgba(242, 109, 247, 0.5);
     box-shadow: 0px 0px 10px rgba(242, 6, 250, 0.87);
     border-radius: 10px;
     transition: 1s ease;
     padding: 5px;
+}
+
+.options:active{
+    font-size: 30px;
+    font-family: 'Lobster', cursive;
+    background-color: rgba(209, 56, 240, 0.712);
+    box-shadow: 0px 0px 10px rgba(107, 6, 223, 0.87);
+    border-radius: 15px;
+    padding: 8px;
+    transition: 1s ease;
+    
 }
 
 #score{
