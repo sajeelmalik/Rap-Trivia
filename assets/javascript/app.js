@@ -64,6 +64,7 @@ var timer;
 var seconds = 15;
 var click = 0; //raw click iterator
 var answer; //empty answer variable to be edited
+var answerClicked = false; //heck if an answer has been clicked to prevent display score bug 
 
 
 $(document).ready(function(){
@@ -159,48 +160,53 @@ $(document).ready(function(){
         nextQuestion();
     });
 
+    
     $(".answers").on("click", "p", function(){
-        console.log(click);
-        console.log($(this).attr('id'));
-        console.log(questions[click].Correct);
-        if ($(this).attr('id') === questions[click].Correct){
-            $(this).css("background-color", "rgba(120, 247, 109, 0.65)");
-            $(this).css("box-shadow", "0px 0px 10px rgba(6, 250, 26, 0.87)");
-            $(this).css("font-size", "28px");
-            $(this).css("font-family", "'Lobster', cursive");
-            $(this).css("padding", "5px");
-            $(this).css("transition", "0.5s ease");
+        if(answerClicked === false){
             
-            correct++;
-            console.log("Correct!");
-        }
-        else{
-            $(this).css("background-color", "rgba(226, 67, 67, 0.61)");
-            $(this).css("box-shadow", "0px 0px 10px rgba(250, 6, 6, 0.87)");
-            $(this).css("font-size", "28px");
-            $(this).css("font-family", "'Lobster', cursive");
-            $(this).css("border-radius", "10px");
-            $(this).css("padding", "5px");
-            $(this).css("transition", "0.5s ease");
-            incorrect++;
-            console.log("incorrect!");
-        }
-        click++;
-        seconds = 15;
-        $("#clock").css("animation", "none");
-        clearTimeout(timer);
+            answerClicked = true;
+            console.log(click);
+            console.log($(this).attr('id'));
+            console.log(questions[click].Correct);
+            if ($(this).attr('id') === questions[click].Correct){
+                $(this).css("background-color", "rgba(120, 247, 109, 0.65)");
+                $(this).css("box-shadow", "0px 0px 10px rgba(6, 250, 26, 0.87)");
+                $(this).css("font-size", "28px");
+                $(this).css("font-family", "'Lobster', cursive");
+                $(this).css("padding", "5px");
+                $(this).css("transition", "0.5s ease");
+                
+                correct++;
+                console.log("Correct!");
+            }
+            else{
+                $(this).css("background-color", "rgba(226, 67, 67, 0.61)");
+                $(this).css("box-shadow", "0px 0px 10px rgba(250, 6, 6, 0.87)");
+                $(this).css("font-size", "28px");
+                $(this).css("font-family", "'Lobster', cursive");
+                $(this).css("border-radius", "10px");
+                $(this).css("padding", "5px");
+                $(this).css("transition", "0.5s ease");
+                incorrect++;
+                console.log("incorrect!");
+            }
+            click++;
+            seconds = 15;
+            $("#clock").css("animation", "none");
+            clearTimeout(timer);
 
-    
-        setTimeout(function(){
-            timeLimit();
-            if(click < questions.length){
-                nextQuestion();
-            }
-            else if(click === questions.length){
-                displayScore();
-            }
-        }, 3000);
-    
+        
+            setTimeout(function(){
+                timeLimit();
+                if(click < questions.length){
+                    nextQuestion();
+                    answerClicked = false;
+                }
+                else if(click === questions.length){
+                    displayScore();
+                }
+            }, 3000);
+        }
     });
 
 });

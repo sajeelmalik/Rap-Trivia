@@ -31,8 +31,7 @@ The page can be run from any browser, preferably on Google Chrome!
 * **CSS3** 
 * **Javascript** - the primary scripting logic powering the game
 * **jQuery** - the robust scripting library for Javascript
-* [**Bootstrap CDN v4.1.0**]
-(https://getbootstrap.com/docs/4.1/getting-started/introduction/) - the open-source web styling framework used
+* [**Bootstrap CDN v4.1.0**](https://getbootstrap.com/docs/4.1/getting-started/introduction/) - the open-source web styling framework used
 * [**Google Fonts**](https://fonts.google.com/) - an interactive library of licensed fonts 
 
 # Code Snippets
@@ -83,10 +82,10 @@ function displayScore(){
 <!-- Learning points where you would write what you thought was helpful -->
 * intervals and timeouts are useful tools to set functions to run within specific time parameters
 * Dynamic element generation and selective displaying of these elements is a crucial concept that must be delved into more deeply (.show() and .hide() methods, introducing unique attributes using .attr())
-* jQuery event handling allows for a diverse user experience and acn override buiit-in browser defaults for video and audio autoplay features
+* jQuery event handling allows for a diverse user experience and can override built-in browser defaults for video and audio autoplay features
 
 
-## Authors
+## Developers
 
 * **Sajeel Malik** - *Initial work* - [GitHub](https://github.com/sajeelmalik)
 
