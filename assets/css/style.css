@@ -72,6 +72,15 @@ h1{
     }
   }
 
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1.0;
+    }
+  }
+
 .answers{
     /* text-align: center; */
     font-size: 24px;
@@ -115,6 +124,8 @@ h1{
 .answer-images{
     border: 3px rgba(242, 109, 247, 0.712) solid;
     border-radius: 7px;
+    animation-name: fade-in;
+    animation-duration: 0.8s;
 }
 
 .answer-explanations{
@@ -123,6 +134,8 @@ h1{
     margin-left: 20px;
     font-size: 1em;
     transition: 0.23s ease-in-out;
+    animation-name: fade-in;
+    animation-duration: 1.2s;
 }
 
 .answer-explanations:hover{
