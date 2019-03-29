@@ -121,6 +121,25 @@ h1{
     transition: 1s ease;
 }
 
+#restart{
+  margin-top: 20px;
+  font-size: 28px;
+  font-family: 'Lobster', cursive;
+  background-color:rgba(242, 109, 247, 0.412);
+  transition: 0.15s ease-in-out;
+}
+
+#restart:hover{
+  font-size: 28px;
+    background-color: rgba(242, 109, 247, 0.55);
+    box-shadow: 0px 0px 10px rgba(242, 6, 250, 0.87);
+}
+
+#restart:active{
+    background-color: rgba(209, 56, 240, 0.712);
+    box-shadow: 0px 0px 10px rgba(107, 6, 223, 0.87);
+}
+
 .answer-images{
     border: 3px rgba(242, 109, 247, 0.712) solid;
     border-radius: 7px;

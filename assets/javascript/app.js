@@ -74,7 +74,8 @@ var timer;
 var seconds = 15;
 var click = 0; //raw click iterator
 var answer; //empty answer variable to be edited
-var answerClicked = false; //heck if an answer has been clicked to prevent display score bug 
+var answerClicked = false; //check if an answer has been clicked to prevent display score bug 
+var audio; //initialize global variable for audio
 
 
 $(document).ready(function () {
@@ -94,8 +95,9 @@ $(document).ready(function () {
 
             if (seconds === -1 && click < questions.length) {
                 seconds = 15;
-                click++
+                click++;
                 incorrect++;
+                clearTimeout(timer);
                 showAnswer();
             }
             else if (click === questions.length) {
@@ -134,7 +136,7 @@ $(document).ready(function () {
         var gif = $("<img class = 'answer-images'>").attr("src", questions[click - 1].Image);
         $(".answers").append(gif);
         var explanationDiv = $("<div>");
-        var answer =  $("<h3 class = 'answer-explanations'>").html("<b>Correct Answer: </b>" +  questions[click - 1].Correct);
+        var answer = $("<h3 class = 'answer-explanations'>").html("<b>Correct Answer: </b>" + questions[click - 1].Correct);
         var explanation = $("<h3 class = 'answer-explanations'>").text(questions[click - 1].explanation);
         explanationDiv.append(answer, explanation)
         $(".answers").append(explanationDiv);
@@ -170,6 +172,7 @@ $(document).ready(function () {
 
         var percentage = Math.round((correct / questions.length) * 100);
         console.log("Percentage: " + percentage)
+
         function addScore() {
             var totalScore = $("<p class = 'final-score'>").html("Your total score is: <b>" + percentage + "%</b>");
             $("#score").append(totalScore);
@@ -196,13 +199,32 @@ $(document).ready(function () {
             addScore();
         }
 
+        var restartButton = $("<button>").attr("id", "restart").addClass("btn").text("Play Again?");
+        $("#score").append(restartButton);
+
+    }
+
+    function resetGame() {
+        correct = 0;
+        incorrect = 0;
+        seconds = 15;
+        click = 0; 
+        $("#score").empty();
+        $("#score").hide();
+        $("#timer").show();
+        $("#questions").show();
+        $(".answers").show();
+        $("#clock").show();
+       
+        nextQuestion();
+
     }
 
     // ===== CLICK LISTENERS =====
 
     //play audio and show first question on game start
     $("#start").on("click", function () {
-        var audio = new Audio("assets/images/brasstracks.mp3");
+        audio = new Audio("assets/images/brasstracks.mp3");
         audio.play();
         $("#clock").show();
         $("#start").remove();
@@ -253,6 +275,17 @@ $(document).ready(function () {
 
             }, 2500);
         }
+    });
+
+    //restart game if chosen
+    $(document).on("click", "#restart",function () {
+        console.log("Restarting game.")
+
+        audio.pause();
+        var audioNew = new Audio("assets/images/brasstracks.mp3");
+        audioNew.play();
+
+        resetGame();
     });
 
 });
