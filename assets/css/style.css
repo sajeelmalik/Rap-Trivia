@@ -121,7 +121,7 @@ h1{
     transition: 1s ease;
 }
 
-#restart{
+.game-button{
   margin-top: 20px;
   font-size: 28px;
   font-family: 'Lobster', cursive;
@@ -129,13 +129,13 @@ h1{
   transition: 0.15s ease-in-out;
 }
 
-#restart:hover{
+.game-button:hover{
   font-size: 28px;
     background-color: rgba(242, 109, 247, 0.55);
     box-shadow: 0px 0px 10px rgba(242, 6, 250, 0.87);
 }
 
-#restart:active{
+.game-button:active{
     background-color: rgba(209, 56, 240, 0.712);
     box-shadow: 0px 0px 10px rgba(107, 6, 223, 0.87);
 }
@@ -189,6 +189,9 @@ h1{
         /* word-break: break-all; */
         white-space: normal;
         max-width: 100%;
+    }
+    #main{
+      padding-top: 60px;
     }
     .answer-images {
       max-width: 100%;

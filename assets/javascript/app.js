@@ -76,6 +76,7 @@ var click = 0; //raw click iterator
 var answer; //empty answer variable to be edited
 var answerClicked = false; //check if an answer has been clicked to prevent display score bug 
 var audio; //initialize global variable for audio
+var showAnswerTimer;
 
 
 $(document).ready(function () {
@@ -147,8 +148,11 @@ $(document).ready(function () {
         // ternary to reduce font-size of long explanations
         $(".answer-explanations").css("font-size", questions[click - 1].explanation.length > 300 ? "0.8em" : "1.0em");
 
+        var nextQuestionButton = $("<button>").addClass("btn game-button next-question").text("Skip");
+        $(".answers").append(nextQuestionButton);
 
-        setTimeout(function () {
+
+        showAnswerTimer = setTimeout(function () {
             $(".answers").css("display", "block");
             if (click < questions.length) {
                 nextQuestion();
@@ -199,7 +203,7 @@ $(document).ready(function () {
             addScore();
         }
 
-        var restartButton = $("<button>").attr("id", "restart").addClass("btn").text("Play Again?");
+        var restartButton = $("<button>").attr("id", "restart").addClass("btn game-button").text("Play Again?");
         $("#score").append(restartButton);
 
     }
@@ -274,6 +278,20 @@ $(document).ready(function () {
                 answerClicked = false;
 
             }, 2500);
+        }
+    });
+
+    //go to next question and 
+    $(document).on("click", ".next-question",function () {
+        // clear existing timeout operating in showAnswer()
+        clearTimeout(showAnswerTimer);
+
+        $(".answers").css("display", "block");
+        if (click < questions.length) {
+            nextQuestion();
+        }
+        else if (click === questions.length) {
+            displayScore();
         }
     });
 
